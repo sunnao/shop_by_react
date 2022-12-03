@@ -5,6 +5,9 @@ import { useState } from 'react';
 import candlesData from './data.js'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import  Detail  from './routes/detail';
+import  About  from './routes/about';
+import Company from './routes/company';
+import Location from './routes/location';
 
 function App() {
   let [candles, setCandles] = useState(candlesData);
@@ -19,7 +22,7 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link className='navLink' onClick={()=>{navigate('/')}}>Home</Nav.Link>
             <Nav.Link className='navLink' onClick={()=>{navigate('/detail')}}>Products</Nav.Link>
-            <Nav.Link className='navLink' href="/pricing">Pricing</Nav.Link>
+            <Nav.Link className='navLink' href="/about">Company</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -35,24 +38,13 @@ function App() {
             </Row>
             </>
         } />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail" element={<Detail candlesData={candlesData} />} />
         <Route path="/about" element={<About />}> 
-          <Route path="company" element={<About />}/> {/* /about/company */}
-          <Route path="location" element={<About />}/> {/* /about/location */}
+          <Route path="company" element={<Company />}/> {/* /about/company */}
+          <Route path="location" element={<Location />}/> {/* /about/location */}
         </Route>
-        <Route path="/detail" element={<Detail />} />
         <Route path="*" element={<div style={{ marginTop:'200px' }}>존재하지 않는 페이지 입니다.</div>} />
       </Routes>
-    </div>
-  )
-}
-    
-
-const About = () => {
-  return (
-    <div>
-      <h4>about페이지임</h4>
-      <Outlet></Outlet>
     </div>
   )
 }
@@ -62,7 +54,7 @@ const Product = (props) => {
     <Col sm className='products'>
       <img src={process.env.PUBLIC_URL +`/Candle${props.num+1}.jpg`} width='100%' />
       <h4>{props.candles.title}</h4>
-      <p>{props.candles.price.toLocaleString()}</p>
+      <p>{props.candles.price.toLocaleString()}원</p>
     </Col>
   )
 }
