@@ -1,3 +1,14 @@
+.navLink{
+  margin: 5px 10px;
+}
+.navLink:focus,
+.navLink:hover {
+  /* display: inline-block; */
+  color: rgb(26, 26, 26);
+  transform: translateY(-2px);
+  transition: 0.5s;
+}
+
 .main-bg {
   height: 600px;
   background-image: url('./img/Candles-bg.jpg');
