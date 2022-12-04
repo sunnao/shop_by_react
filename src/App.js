@@ -33,12 +33,12 @@ function App() {
           <div className="main-bg"></div>
             <Row>
               {candles.map((data, i) =>
-                <Product candles={candles[i]} num={i}/>
+                <Product candles={candles[i]} num={i} key={i} />
                 )}
             </Row>
             </>
         } />
-        <Route path="/detail" element={<Detail candlesData={candlesData} />} />
+        <Route path="/detail/:id" element={<Detail candles={candles} />} />
         <Route path="/about" element={<About />}> 
           <Route path="company" element={<Company />}/> {/* /about/company */}
           <Route path="location" element={<Location />}/> {/* /about/location */}
