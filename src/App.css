@@ -1,4 +1,4 @@
-.navLink{
+.navLink {
   margin: 5px 10px;
 }
 .navLink:focus,
@@ -11,13 +11,26 @@
 
 .main-bg {
   height: 600px;
-  background-image: url('./img/Candles-bg.jpg');
+  background-image: url("./img/Candles-bg.jpg");
   background-size: cover;
   background-position: center;
   margin-bottom: 50px;
 }
-.products > img {
-  margin-bottom: 15px;
+
+.productsLink {
+  text-decoration: none;
+  color: black;
+}
+.productsLink:focus,
+.productsLink:hover {
+  color: grey;
+  transition: 0.5s;
+}
+.products:focus,
+.products:hover {
+  color: grey;
+  transform: translateY(-4px);
+  transition: 0.5s;
 }
 .App {
   text-align: center;

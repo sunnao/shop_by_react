@@ -4,14 +4,18 @@ import { Navbar, Container, Nav, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import candlesData from "./data.js";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
-import Detail from "./routes/detail";
+import {Btn, Detail} from "./routes/detail";
 import About from "./routes/about";
 import Company from "./routes/company";
 import Location from "./routes/location";
+import axios from "axios";
+
 
 function App() {
   let [candles, setCandles] = useState(candlesData);
   let navigate = useNavigate();
+  let [btnCount, setBtnCount] = useState(2);
+  let [btnShow, setBtnShow] = useState(true)
 
   return (
     <div className="App">
@@ -60,7 +64,27 @@ function App() {
                   <Product candles={candles[i]} num={i} key={i} />
                 ))}
               </Row>
-              <button onClick={() => {}}></button>
+              {
+                btnShow === true
+                ? <Btn onClick={() => {
+                  setBtnCount(btnCount+1);
+                  
+                  axios.get('https://codingapple1.github.io/shop/data'+`${btnCount}.json`)
+                  .then((result)=>{
+                    // setCandles(candles.concat(result.data))
+                    let copy = [...candles, ...result.data];
+                    setCandles(copy);
+                    if(btnCount>2){
+                      setBtnShow(false)
+                    }
+                  })
+                  .catch((result)=>{
+                    console.log('요청 실패')
+                  })
+                }}>더보기</Btn>
+                : null
+              }
+              
             </>
           }
         />
@@ -78,11 +102,11 @@ function App() {
 const Product = props => {
   return (
     <Col sm className="products">
-      <Link to={/detail/ + `${props.num}`}>
+      <Link className="productsLink" to={/detail/ + `${props.num}`}>
         <img src={process.env.PUBLIC_URL + `/Candle${props.num + 1}.jpg`} width="100%" />
-      </Link>
       <h4>{props.candles.title}</h4>
       <p>{props.candles.price.toLocaleString()}원</p>
+      </Link>
     </Col>
   );
 };

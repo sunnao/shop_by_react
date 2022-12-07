@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
 
-const OrderBtn = styled.button`
+export const Btn = styled.button`
 box-shadow: 0px 10px 14px -7px grey;
 	background:black;
   border : none;
@@ -12,7 +12,7 @@ box-shadow: 0px 10px 14px -7px grey;
 	padding: 7px 80px;
 `
 
-const Detail = (props) => {
+export const Detail = (props) => {
   
   let {id} = useParams();
   let detailProduct = props.candles.find((data) => data.id === Number(id));
@@ -54,14 +54,13 @@ const Detail = (props) => {
         <p>{detailProduct.content}</p>
         <p>{detailProduct.price.toLocaleString()}원</p>
         <input placeholder="주문 수량" onChange={(e)=>{ setNum(e.target.value) }}></input>
-        <OrderBtn>주문하기</OrderBtn>
+        <Btn>주문하기</Btn>
       </div>
     </div>
   </div> 
   )
 }
 
-export default Detail;
 
 
 // useEffect(()=>{}) /**재랜더링마다 코드실행 */
