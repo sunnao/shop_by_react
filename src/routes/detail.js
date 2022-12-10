@@ -10,6 +10,7 @@ box-shadow: 0px 10px 14px -7px grey;
 	border-radius:5px;
 	color:#ffffff;
 	padding: 7px 80px;
+  display:inline-block;
 `
 
 export const Detail = (props) => {
